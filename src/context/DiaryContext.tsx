@@ -11,8 +11,6 @@ const DiaryContext = createContext<DiaryContextType | undefined>(undefined);
 
 export const DiaryProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
   const [entries, setEntries] = useState<DiaryEntryType[]>([]);
-
-  // Load entries from localStorage
   useEffect(() => {
     const savedEntries = localStorage.getItem('diaryEntries');
     if (savedEntries) {
@@ -23,8 +21,6 @@ export const DiaryProvider: React.FC<{children: React.ReactNode}> = ({ children 
       }
     }
   }, []);
-
-  // Save entries to localStorage
   useEffect(() => {
     localStorage.setItem('diaryEntries', JSON.stringify(entries));
   }, [entries]);

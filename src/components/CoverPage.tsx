@@ -6,7 +6,6 @@ const CoverPage: React.FC = () => {
   const [coverTitle, setCoverTitle] = useState('My Personal Diary');
   const [coverMessage, setCoverMessage] = useState('Why I started this journey...');
 
-  // Load saved cover information
   useEffect(() => {
     const savedTitle = localStorage.getItem('diaryTitle');
     const savedMessage = localStorage.getItem('diaryMessage');
@@ -15,7 +14,6 @@ const CoverPage: React.FC = () => {
     if (savedMessage) setCoverMessage(savedMessage);
   }, []);
 
-  // Save cover information
   const saveCoverInfo = () => {
     localStorage.setItem('diaryTitle', coverTitle);
     localStorage.setItem('diaryMessage', coverMessage);

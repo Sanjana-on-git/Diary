@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import CoverPage from './CoverPage';
 import DiaryEntry from './DiaryEntry';
@@ -11,7 +11,6 @@ const DiaryLayout: React.FC = () => {
   const [showNewEntryForm, setShowNewEntryForm] = useState(false);
   const [pageTransition, setPageTransition] = useState('');
 
-  // Total pages: cover + entries
   const totalPages = entries.length + 1;
 
   const goToNextPage = () => {
@@ -42,7 +41,6 @@ const DiaryLayout: React.FC = () => {
     setShowNewEntryForm(false);
   };
 
-  // Get current entry for the page
   const getCurrentContent = () => {
     if (currentPage === 0) {
       return <CoverPage />;
@@ -57,7 +55,6 @@ const DiaryLayout: React.FC = () => {
 
   return (
     <div className="relative max-w-4xl mx-auto my-8">
-      {/* Diary page with transition effects */}
       <div 
         className={`bg-white rounded-lg shadow-lg p-8 min-h-[70vh] transition-all duration-300 transform ${
           pageTransition === 'slide-left' ? 'translate-x-[-100%] opacity-0' : 
@@ -67,7 +64,6 @@ const DiaryLayout: React.FC = () => {
         {getCurrentContent()}
       </div>
 
-      {/* Navigation controls */}
       <div className="flex justify-between mt-8">
         <button 
           onClick={goToPrevPage}
@@ -104,12 +100,10 @@ const DiaryLayout: React.FC = () => {
         </button>
       </div>
 
-      {/* Page counter */}
       <div className="text-center mt-4 text-amber-800">
         Page {currentPage + 1} of {totalPages}
       </div>
 
-      {/* New Entry Modal */}
       {showNewEntryForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto">
